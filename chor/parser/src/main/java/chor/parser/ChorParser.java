@@ -17,23 +17,33 @@
  * USA
  */
 
-
 package chor.parser;
 
+import chor.parser.ast.ChorNode;
 import chor.parser.ast.ValueCommunication;
-import javaslang.control.Match;
+import org.codehaus.jparsec.Parser;
+import org.codehaus.jparsec.Parsers;
+import org.codehaus.jparsec.Scanners;
+import org.codehaus.jparsec.Terminals;
+import org.codehaus.jparsec.misc.Mapper;
 
-public class Main
+public final class ChorParser
 {
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args)
+	private static final Parser< Void > IGNORED =
+		Parsers.or( Scanners.JAVA_LINE_COMMENT, Scanners.JAVA_BLOCK_COMMENT, Scanners.WHITESPACES ).skipMany();
+	
+	private static final Parser< String > ID = Scanners.IDENTIFIER.between( IGNORED, IGNORED );
+	private static final Parser< ? > ARROW = Terminals.operators( "->" ).tokenizer();
+	
+	private ChorParser() {}
+	
+	public static Parser< ? extends ChorNode > create()
 	{
-		String s = Match
-			.caze( (ValueCommunication v) -> v.sender() + " sends to " + v.receiver() )
-			.apply( ChorParser.create().parse( "a2 -> b" ) );
-		
-		System.out.println( s );
+		return valueCommunication();
+	}
+	
+	private static Parser< ValueCommunication > valueCommunication()
+	{
+		return Mapper.curry( ValueCommunication.class ).sequence( ID, ARROW.next( ID ) );
 	}
 }

@@ -23,4 +23,5 @@ dependencies {
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
 	
 	compile group: 'org.jparsec', name: 'jparsec', version: '2.2.1'
+	compile "com.javaslang:javaslang:1.2.2"
 }

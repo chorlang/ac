@@ -17,23 +17,30 @@
  * USA
  */
 
+package chor.parser.ast;
 
-package chor.parser;
-
-import chor.parser.ast.ValueCommunication;
-import javaslang.control.Match;
-
-public class Main
+/**
+ * 
+ * @author Fabrizio Montesi
+ */
+public final class ValueCommunication implements ChorNode
 {
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args)
+	private final String sender;
+	private final String receiver;
+	
+	public ValueCommunication( String sender, String receiver )
 	{
-		String s = Match
-			.caze( (ValueCommunication v) -> v.sender() + " sends to " + v.receiver() )
-			.apply( ChorParser.create().parse( "a2 -> b" ) );
-		
-		System.out.println( s );
+		this.sender = sender;
+		this.receiver = receiver;
+	}
+	
+	public String sender()
+	{
+		return sender;
+	}
+	
+	public String receiver()
+	{
+		return receiver;
 	}
 }

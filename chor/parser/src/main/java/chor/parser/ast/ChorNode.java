@@ -17,23 +17,11 @@
  * USA
  */
 
+package chor.parser.ast;
 
-package chor.parser;
-
-import chor.parser.ast.ValueCommunication;
-import javaslang.control.Match;
-
-public class Main
-{
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args)
-	{
-		String s = Match
-			.caze( (ValueCommunication v) -> v.sender() + " sends to " + v.receiver() )
-			.apply( ChorParser.create().parse( "a2 -> b" ) );
-		
-		System.out.println( s );
-	}
-}
+/**
+ * A node in the Chor Abstract Syntax Tree (AST).
+ *
+ * @author Fabrizio Montesi
+ */
+public interface ChorNode {}
