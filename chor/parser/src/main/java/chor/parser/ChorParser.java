@@ -42,6 +42,13 @@ public final class ChorParser
 		return valueCommunication();
 	}
 	
+	/**
+	 * Parses a value communication:
+	 * 
+	 * p -> q
+	 * 
+	 * @return 
+	 */
 	private static Parser< ValueCommunication > valueCommunication()
 	{
 		return Mapper.curry( ValueCommunication.class ).sequence( ID, ARROW.next( ID ) );
