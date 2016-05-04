@@ -1,3 +1,3 @@
 ## Test Branch
 
-Soon to be marged with the master.
+Soon to be merged with the master.
