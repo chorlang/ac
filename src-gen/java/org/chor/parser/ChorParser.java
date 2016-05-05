@@ -1,5 +1,5 @@
-// Generated from /Users/thesave/projects/chor/src/antlr/chor.g4 by ANTLR 4.5.3
-package org.chor;
+// Generated from /Users/thesave/projects/chor/src/antlr/Chor.g4 by ANTLR 4.5.3
+package org.chor.parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,14 +10,14 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class chorParser extends Parser {
+public class ChorParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.5.3", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, NEWLINE=7, INT=8;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, INT=8;
 	public static final int
 		RULE_prog = 0, RULE_expr = 1;
 	public static final String[] ruleNames = {
@@ -25,10 +25,10 @@ public class chorParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'*'", "'/'", "'+'", "'-'", "'('", "')'"
+		null, "';'", "'*'", "'/'", "'+'", "'-'", "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, "NEWLINE", "INT"
+		null, null, null, null, null, null, null, null, "INT"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -64,7 +64,7 @@ public class chorParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "chor.g4"; }
+	public String getGrammarFileName() { return "Chor.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -75,7 +75,7 @@ public class chorParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public chorParser(TokenStream input) {
+	public ChorParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -86,17 +86,13 @@ public class chorParser extends Parser {
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public List<TerminalNode> NEWLINE() { return getTokens(chorParser.NEWLINE); }
-		public TerminalNode NEWLINE(int i) {
-			return getToken(chorParser.NEWLINE, i);
-		}
 		public ProgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof chorVisitor ) return ((chorVisitor<? extends T>)visitor).visitProg(this);
+			if ( visitor instanceof ChorVisitor ) return ((ChorVisitor<? extends T>)visitor).visitProg(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -111,13 +107,13 @@ public class chorParser extends Parser {
 			setState(9);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__4 || _la==INT) {
+			while (_la==T__5 || _la==INT) {
 				{
 				{
 				setState(4);
 				expr(0);
 				setState(5);
-				match(NEWLINE);
+				match(T__0);
 				}
 				}
 				setState(11);
@@ -138,7 +134,7 @@ public class chorParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
-		public TerminalNode INT() { return getToken(chorParser.INT, 0); }
+		public TerminalNode INT() { return getToken(ChorParser.INT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
@@ -151,7 +147,7 @@ public class chorParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expr; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof chorVisitor ) return ((chorVisitor<? extends T>)visitor).visitExpr(this);
+			if ( visitor instanceof ChorVisitor ) return ((ChorVisitor<? extends T>)visitor).visitExpr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -180,14 +176,14 @@ public class chorParser extends Parser {
 				match(INT);
 				}
 				break;
-			case T__4:
+			case T__5:
 				{
 				setState(14);
-				match(T__4);
+				match(T__5);
 				setState(15);
 				expr(0);
 				setState(16);
-				match(T__5);
+				match(T__6);
 				}
 				break;
 			default:
@@ -213,7 +209,7 @@ public class chorParser extends Parser {
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(21);
 						_la = _input.LA(1);
-						if ( !(_la==T__0 || _la==T__1) ) {
+						if ( !(_la==T__1 || _la==T__2) ) {
 						_errHandler.recoverInline(this);
 						} else {
 							consume();
@@ -230,7 +226,7 @@ public class chorParser extends Parser {
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(24);
 						_la = _input.LA(1);
-						if ( !(_la==T__2 || _la==T__3) ) {
+						if ( !(_la==T__3 || _la==T__4) ) {
 						_errHandler.recoverInline(this);
 						} else {
 							consume();
@@ -240,7 +236,7 @@ public class chorParser extends Parser {
 						}
 						break;
 					}
-					}
+					} 
 				}
 				setState(30);
 				_errHandler.sync(this);
@@ -280,10 +276,10 @@ public class chorParser extends Parser {
 		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n\"\4\2\t\2\4\3\t"+
 		"\3\3\2\3\2\3\2\7\2\n\n\2\f\2\16\2\r\13\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3\25"+
 		"\n\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3\35\n\3\f\3\16\3 \13\3\3\3\2\3\4\4\2\4"+
-		"\2\4\3\2\3\4\3\2\5\6#\2\13\3\2\2\2\4\24\3\2\2\2\6\7\5\4\3\2\7\b\7\t\2"+
+		"\2\4\3\2\4\5\3\2\6\7#\2\13\3\2\2\2\4\24\3\2\2\2\6\7\5\4\3\2\7\b\7\3\2"+
 		"\2\b\n\3\2\2\2\t\6\3\2\2\2\n\r\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3"+
-		"\2\2\2\r\13\3\2\2\2\16\17\b\3\1\2\17\25\7\n\2\2\20\21\7\7\2\2\21\22\5"+
-		"\4\3\2\22\23\7\b\2\2\23\25\3\2\2\2\24\16\3\2\2\2\24\20\3\2\2\2\25\36\3"+
+		"\2\2\2\r\13\3\2\2\2\16\17\b\3\1\2\17\25\7\n\2\2\20\21\7\b\2\2\21\22\5"+
+		"\4\3\2\22\23\7\t\2\2\23\25\3\2\2\2\24\16\3\2\2\2\24\20\3\2\2\2\25\36\3"+
 		"\2\2\2\26\27\f\6\2\2\27\30\t\2\2\2\30\35\5\4\3\7\31\32\f\5\2\2\32\33\t"+
 		"\3\2\2\33\35\5\4\3\6\34\26\3\2\2\2\34\31\3\2\2\2\35 \3\2\2\2\36\34\3\2"+
 		"\2\2\36\37\3\2\2\2\37\5\3\2\2\2 \36\3\2\2\2\6\13\24\34\36";

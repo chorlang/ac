@@ -1,1 +1,1 @@
-apply from: "generateParser.gradlee"
+ apply from: "generateParser.gradlee"

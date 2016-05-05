@@ -1,7 +1,7 @@
 def root = project.projectDir.toString() + "/"
 def antlr_tool = root + "tools/antlr-4.5.3-complete.jar"
 def grammarFolder = root + "src/antlr"
-def parserDest = root + "src-gen/java/org"
+def parserDest = root + "src-gen/java/org/chor/parser"
 
 task generateParser( type: Exec, dependsOn: "cleanDestination" ) {
     doFirst {
@@ -10,8 +10,8 @@ task generateParser( type: Exec, dependsOn: "cleanDestination" ) {
         args = [    "-jar" , antlr_tool,
                     "-o", parserDest,
                     "-visitor", "-no-listener",
-                    "-package", "org.chor",
-                    grammarFolder + "/chor.g4" ]
+                    "-package", "org.chor.parser",
+                    grammarFolder + "/Chor.g4" ]
         ext.output = { return standardOutput.toString() }
     }
     doLast { println "generated Java parser" }
