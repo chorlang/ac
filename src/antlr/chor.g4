@@ -1,4 +1,4 @@
-grammar chor;    
+grammar chor;
 prog: (expr NEWLINE)* ;
 expr: expr ('*'|'/') expr
     | expr ('+'|'-') expr

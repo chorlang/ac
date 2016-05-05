@@ -1,1 +1,1 @@
-apply from: "compileParser.gradle"
+apply from: "generateParser.gradlee"

@@ -1,4 +1,5 @@
-// Generated from chor.g4 by ANTLR 4.5.3
+// Generated from /Users/thesave/projects/chor/src/antlr/chor.g4 by ANTLR 4.5.3
+package org.chor;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -94,12 +95,9 @@ public class chorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof chorListener ) ((chorListener)listener).enterProg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof chorListener ) ((chorListener)listener).exitProg(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof chorVisitor ) return ((chorVisitor<? extends T>)visitor).visitProg(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -152,12 +150,9 @@ public class chorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_expr; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof chorListener ) ((chorListener)listener).enterExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof chorListener ) ((chorListener)listener).exitExpr(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof chorVisitor ) return ((chorVisitor<? extends T>)visitor).visitExpr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -245,7 +240,7 @@ public class chorParser extends Parser {
 						}
 						break;
 					}
-					} 
+					}
 				}
 				setState(30);
 				_errHandler.sync(this);

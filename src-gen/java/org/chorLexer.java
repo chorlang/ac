@@ -1,4 +1,5 @@
-// Generated from chor.g4 by ANTLR 4.5.3
+// Generated from /Users/thesave/projects/chor/src/antlr/chor.g4 by ANTLR 4.5.3
+package org.chor;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
