@@ -1,0 +1,10 @@
+protocol SimpleProtocol( role Client, role Server )
+{
+  Client -> Server: int
+}
+
+main( proc client )
+{
+  session k = Simple( client, server[srv1] );
+  k: client.5 -> server.x;
+}
