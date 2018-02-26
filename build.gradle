@@ -1,1 +1,97 @@
- apply from: "generateParser.gradle"
+buildscript {
+  ext.kotlin_version = '1.1.4-3'
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+apply plugin: 'java' // because we use the JavaCompile type
+apply plugin: 'antlr' // because we use the generateGrammarSource task and have Antlr dependencies
+apply plugin: 'kotlin' // because we use the KotlinCompile type
+apply plugin: 'application' // because we run a compiled file
+
+dependencies {
+  antlr "org.antlr:antlr4:4.5.3"
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+repositories {
+  mavenCentral()
+}
+
+// We do not need to declare it as a "task" because we imported it
+// through the "apply" declaration. To see all the tasks present in a 
+// gradle script just type `gradle tasks --all`
+// otherwise we would have had to declare a task with type AntlrTask
+// and specify an antlrClasspath like .gradle/caches/modules-2/files-2.1/
+// org.antlr/antlr4/4.5.3/f35db7e4b2446e4174ba6a73db7bd6b3e6bb5da1/antlr4-4.5.3.jar
+// which would be silly to do by hand
+generateGrammarSource {
+  description "Compilation of the Antlr grammar to Java Sources"
+  outputDirectory = file( antlrGenerateDestination )
+
+  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doLast( { println( "Done " + tasks[ name ].description ) } )
+}
+
+ /**
+ * Compile Antlr-generated Java sources
+ */
+task compileAntlrJavaSources( type: JavaCompile, dependsOn: generateGrammarSource ) {
+  description = "Compilation of Antlr-generated Java Sources to class files "
+  source = fileTree( dir: antlrGenerateDestination )
+  classpath = compileJava.classpath
+  destinationDir = file( antlrCompileDestination )
+
+  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doLast( { println( "Done " + tasks[ name ].description ) } )
+}
+
+/**
+ * Compile the main Java sources
+ */
+compileJava(){
+  description "Compilation of the Main Java Sources"
+  source = fileTree( dir: "src/main/java" ).include( "**/*.java" )
+  destinationDir = file( javaCompileDestination )
+  classpath = compileJava.classpath
+  classpath += files( antlrCompileDestination )
+
+  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doLast( { println( "Done " + tasks[ name ].description ) } )
+}
+
+compileKotlin() {
+  source = fileTree( dir: "src/main/kotlin" ).include( "**/*.kt" )
+  destinationDir = file( kotlinCompileDestination )
+  classpath = compileKotlin.classpath
+  classpath += files( antlrCompileDestination )
+
+  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doLast( { println( "Done " + tasks[ name ].description ) } )
+}
+
+compileJava.dependsOn compileAntlrJavaSources
+compileKotlin.dependsOn compileAntlrJavaSources
+
+// this defines the main class we want to run. Launch it with "gradle run"
+run.main = "TestKotlin"
+run.classpath += files( antlrCompileDestination )
+run.dependsOn compileKotlin
+
+task runKotlin( type: JavaExec, dependsOn: compileKotlin ){
+  main = "TestKotlin"
+  classpath += run.classpath
+  classpath += files( antlrCompileDestination )
+  doFirst{ println( "workingDir " + workingDir )}
+}
+
+task runJava( type: JavaExec, dependsOn: compileJava ){
+  workingDir = file( javaCompileDestination )
+  main = "Test"
+  classpath += run.classpath
+  classpath += files( antlrCompileDestination )
+}
