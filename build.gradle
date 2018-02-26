@@ -33,7 +33,7 @@ generateGrammarSource {
   description "Compilation of the Antlr grammar to Java Sources"
   outputDirectory = file( antlrGenerateDestination )
 
-  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doFirst( { println( "Starting " + tasks[ name ].description ) } )
   doLast( { println( "Done " + tasks[ name ].description ) } )
 }
 
@@ -46,7 +46,7 @@ task compileAntlrJavaSources( type: JavaCompile, dependsOn: generateGrammarSourc
   classpath = compileJava.classpath
   destinationDir = file( antlrCompileDestination )
 
-  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doFirst( { println( "Starting " + tasks[ name ].description ) } )
   doLast( { println( "Done " + tasks[ name ].description ) } )
 }
 
@@ -60,7 +60,7 @@ compileJava(){
   classpath = compileJava.classpath
   classpath += files( antlrCompileDestination )
 
-  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doFirst( { println( "Starting " + tasks[ name ].description ) } )
   doLast( { println( "Done " + tasks[ name ].description ) } )
 }
 
@@ -70,7 +70,7 @@ compileKotlin() {
   classpath = compileKotlin.classpath
   classpath += files( antlrCompileDestination )
 
-  doFirst( { println( "Staring " + tasks[ name ].description ) } )
+  doFirst( { println( "Starting " + tasks[ name ].description ) } )
   doLast( { println( "Done " + tasks[ name ].description ) } )
 }
 
