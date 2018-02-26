@@ -4,5 +4,6 @@
 *.properties
 *.idea
 *.iml
-dst/
-src-gen/**
+dst
+src-gen
+build
