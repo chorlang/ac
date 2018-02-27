@@ -1,7 +1,6 @@
 *.class
 *.bin
 *.lock
-*.properties
 *.idea
 *.iml
 dst
